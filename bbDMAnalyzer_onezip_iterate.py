@@ -1,4 +1,4 @@
-## add EWK reweihting 
+## Add EWK reweihting 
 ## add QCD reweighting 
 ## add missing weights 
 
@@ -381,8 +381,8 @@ def runOneFile(filename):
         
         out_events["prefigingwt"]       = cms_events["prefigingwt"]
         out_events["mcnloweight"]       = cms_events["mcnloweight"]
-        '''                                
-        ## commenting because I think they are not needed 
+
+        ## can be commenting because I think they are not needed 
         out_events["jetpt0"]            = ak.Array(getN(cms_events.jetptTight,0))
         out_events["jetpt1"]            = ak.Array(getN(cms_events.jetptLoose,1))
         out_events["jetpt2"]            = ak.Array(getN(cms_events.jetptLoose,2))
@@ -398,7 +398,13 @@ def runOneFile(filename):
         out_events["jeteta4"]           = ak.Array(getN(cms_events.jetetaLoose,4))
         out_events["jeteta5"]           = ak.Array(getN(cms_events.jetetaLoose,5))
         out_events["jeteta6"]           = ak.Array(getN(cms_events.jetetaLoose,6))
-                                       
+        
+        out_events["deta"]              = out_events["jeteta0"] - out_events["jeteta1"]
+        out_events["cts"]               = abs(numpy.tanh(out_events["deta"]/2) )
+
+
+
+        
         out_events["jetphi0"]           = ak.Array(getN(cms_events.jetphiTight,0))
         out_events["jetphi1"]           = ak.Array(getN(cms_events.jetphiLoose,1))
         out_events["jetphi2"]           = ak.Array(getN(cms_events.jetphiLoose,2))
@@ -415,7 +421,7 @@ def runOneFile(filename):
         out_events["csv1"]              = ak.Array(getN(cms_events.jetcsv[cms_events.jet_sel_loose==True],1))
         out_events["csv2"]              = ak.Array(getN(cms_events.jetcsv[cms_events.jet_sel_loose==True],2))
         out_events["csv3"]              = ak.Array(getN(cms_events.jetcsv[cms_events.jet_sel_loose==True],3))
-        '''
+        
 
         out_events["SR_2b"]             = cms_events["mask_SR2b"]
         out_events["SR_1b"]             = cms_events["mask_SR1b"]
@@ -507,12 +513,13 @@ def runOneFile(filename):
         out_events["eleLooseSF1"]       = sfs.evaluator["EGamma_SF2D_L"](out_events.eleeta1, out_events.elept1)
         out_events["eleTrigSF0"]        = sfs.evaluator["EGamma_SF2D_Trig"](out_events.eleeta0, out_events.elept0)
         out_events["eleRecoSF0"]        = sfs.evaluator["EGamma_SF2D_Reco"](out_events.eleeta0, out_events.elept0)
-                                        
+        #out_events["eleRecoSF1"]        = sfs.evaluator["EGamma_SF2D_Reco"](out_events.eleeta1, out_events.elept1)
+        
         eleRecoSF1_hi                   = sfs.evaluator["EGamma_SF2D_Reco"](out_events.eleeta1, out_events.elept1)
         eleRecoSF1_lo                   = sfs.evaluator["EGamma_SF2D_Reco_lowpt"](out_events.eleeta1, out_events.elept1)
-                                        
+                                       
         eleRecoSF1_hi_                  = ak.fill_none( ak.mask(  eleRecoSF1_hi , out_events.elept1>20.) ,0 )
-        eleRecoSF1_lo_                  = ak.fill_none( ak.mask(  eleRecoSF1_lo , out_events.elept1>20.) ,0 )
+        eleRecoSF1_lo_                  = ak.fill_none( ak.mask(  eleRecoSF1_lo , out_events.elept1<20.) ,0 )
         out_events["eleRecoSF1"]        = eleRecoSF1_hi_ + eleRecoSF1_lo_
         
         
@@ -563,8 +570,8 @@ def runOneFile(filename):
         muonLooseIDSF_lowpt1                = ( (sfs.evaluator["muon_lowpt_BCDEF_LooseID"](out_events.mupt1, abs(out_events.mueta1) ))  )
         
         ##----------- medium pt Loose       
-        muonLooseIDSF1                      = ( (sfs.evaluator["muon_highpt_BCDEF_LooseID"](out_events.mueta1, out_events.mupt1))  )
-        muonLooseISOSF1                     = ( (sfs.evaluator["muon_highpt_BCDEF_LooseISO"](out_events.mueta1, out_events.mupt1)))
+        muonLooseIDSF1                      = ( (sfs.evaluator["muon_highpt_BCDEF_LooseID"](out_events.mupt1, abs(out_events.mueta1)))  )
+        muonLooseISOSF1                     = ( (sfs.evaluator["muon_highpt_BCDEF_LooseISO"](out_events.mupt1, abs(out_events.mueta1))))
         muon_loose_ID_low_SF_1              = ak.fill_none( ak.mask(  muonLooseIDSF_lowpt1 , out_events.mupt1<20.) ,0 )
         muon_loose_ID_high_SF_1             = ak.fill_none( ak.mask(  muonLooseIDSF1       , out_events.mupt1>20.) ,0 )
         muon_loose_ID_SF_1                  = muon_loose_ID_low_SF_1 + muon_loose_ID_high_SF_1
@@ -572,11 +579,18 @@ def runOneFile(filename):
                                             
                                             
         ##------------medium pt tight       
-        muonTightIDSF0                      = ( (sfs.evaluator["muon_highpt_BCDEF_TightID"](out_events.mueta0, out_events.mupt0)) )
-        muonTightISOSF0                     = ( (sfs.evaluator["muon_highpt_BCDEF_TightISO"](out_events.mueta0, out_events.mupt0))  )
+        muonTightIDSF0                      = ( (sfs.evaluator["muon_highpt_BCDEF_TightID"](out_events.mupt0, abs(out_events.mueta0)) ))
+        muonTightISOSF0                     = ( (sfs.evaluator["muon_highpt_BCDEF_TightISO"](out_events.mupt0, abs(out_events.mueta0))  ))
         out_events["muTightSF0"]            = muonTightIDSF0 * muonTightISOSF0
         
-
+        out_events["muIDSF0"] = muonTightIDSF0
+        out_events["muIDSF1"] = muon_loose_ID_SF_1
+        out_events["muIDSF"]  = muonTightIDSF0 * muon_loose_ID_SF_1
+        
+        out_events["muIsoSF0"] = muonTightISOSF0
+        out_events["muIsoSF1"] = muonLooseISOSF1
+        out_events["muIsoSF"]  = muonTightISOSF0 * muonLooseISOSF1
+        
         ## Pile up weight                                    
         out_events["puweight"]              = sfs.evaluator["pu_weight"](cms_events.nTrueInt)
         
@@ -598,7 +612,7 @@ def runOneFile(filename):
         #btagsf0
         
         commonweight = out_events["prefigingwt"] *  out_events["mcnloweight"]   
-
+        out_events["commonweight"]  = commonweight
         out_events["weight_SR_2b"]          = out_events.puweight * out_events.mettrigWeight * out_events.total_weight_jets * commonweight
         out_events["weight_SR_1b"]          = out_events.puweight * out_events.mettrigWeight * out_events.total_weight_jets * commonweight
         
@@ -637,14 +651,19 @@ def runOneFile(filename):
     from variables import vardict, regions, variables_common
     from binning import binning
     
-    thisevent = fulltree_[(fulltree_.event==101458788)]
+    thisevent = fulltree_[(fulltree_.event==6909251)]
     print ("Praveen tt 2b event for weight debuging:", thisevent.tolist())
     for iregion in regions:
         print ("events in ", iregion, GetEntries(fulltree_, iregion ) )
+        
+        #if iregion == "ZmumuCR_1b":
+        #    topr = GetRegion(fulltree_, iregion)
+        #    for ievent in range(len(topr)):
+        #        print (topr[ievent].event,   topr[ievent].Zmumu_recoil,  topr[ievent].weight_ZmumuCR_1b, topr[ievent].recoilZmumutrigWeight, topr[ievent].total_weight_jets,  topr[ievent].puweight, commonweight[ievent],      topr[ievent].muIDSF,  topr[ievent].muIsoSF , topr[ievent].muIDSF0, topr[ievent].muIDSF1, topr[ievent].muIsoSF0, topr[ievent].muIsoSF1 )
         #print ("event list: ", GetRegion(fulltree_, iregion).event.tolist())
         #print ("weight list: ", GetRegion(fulltree_, iregion).total_weight_jets.tolist())
         
-
+        
     f = TFile(outputfile,"RECREATE")
     for ireg in regions:
         thisregion  = fulltree_[fulltree_[ireg]==True]

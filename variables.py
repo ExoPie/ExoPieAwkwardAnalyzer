@@ -4,20 +4,20 @@ regions=["SR_1b", "SR_2b", "ZeeCR_2b", "ZmumuCR_2b", "TopenuCR_2b", "TopmunuCR_2
 
 vardict={"metpt":"MET",
          "metphi":"METPhi",
-         #"jetpt0":"Jet1Pt",
-         #"jetpt1":"Jet2Pt",
-         #"jeteta0":"Jet1Eta",
-         #"jeteta1":"Jet2Eta",
-         #"csv0":"Jet1deepCSV",
-         #"csv1":"Jet2deepCSV",
+         "jetpt0":"Jet1Pt",
+         "jetpt1":"Jet2Pt",
+         "jeteta0":"Jet1Eta",
+         "jeteta1":"Jet2Eta",
+         "csv0":"Jet1deepCSV",
+         "csv1":"Jet2deepCSV",
          "recoil_Wmunu0":"Recoil",
          "recoil_Wenu0":"Recoil",
          "recoil_Zmumu0":"Recoil",
          "recoil_Zee0":"Recoil",
          "recoil_WmunuPhi0":"RecoilPhi",
          "recoil_WenuPhi0":"RecoilPhi",
-         #"Zee_recoilPhi":"RecoilPhi",
-         #"Zmumu_recoilPhi":"RecoilPhi",
+         "Zee_recoilPhi":"RecoilPhi",
+         "Zmumu_recoilPhi":"RecoilPhi",
          "nTrueInt":"nPV",
          "nJetLoose":"nJets",
          "nEleLoose":"NEle",
@@ -36,8 +36,8 @@ vardict={"metpt":"MET",
          
          "mt_Wmunu0":"Wmass",
          "mt_Wenu0":"Wmass",
-         #"pt_Wmunu0":"WpT",
-         #"pt_Wenu0":"WpT",
+         "pt_Wmunu0":"WpT",
+         "pt_Wenu0":"WpT",
          "Zee_mass":"Zmass",
          "Zmumu_mass":"Zmass",
          "Zmumu_pt":"ZpT",
@@ -45,7 +45,7 @@ vardict={"metpt":"MET",
 }
 
 
-variables_common={"SR_1b":["metpt"]}#, "metphi", "jetpt0", "jeteta0", "csv0", "nTrueInt", "nJetLoose", "nEleLoose", "min_dphi_jet_met"]}
+variables_common={"SR_1b":["metpt", "metphi", "jetpt0", "jeteta0", "csv0", "nTrueInt", "nJetLoose", "nEleLoose", "min_dphi_jet_met"]}
 
 for ireg in regions:
     variables_common[ireg] = copy.deepcopy(variables_common["SR_1b"])
