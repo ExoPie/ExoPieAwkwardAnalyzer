@@ -77,7 +77,7 @@ def runOneFile(filename):
     
     #file_=uproot4.MultithreadedFileSource(inputfile, num_workers=10)
     #print ("root file opened: ", filename)
-    nevents=ak.to_list(file_["h_total_mcweight"].values())[2]
+    nevents=ak.to_list(file_["h_total_mcweight"].values())[-1]
     #nevents = 1000000
     print ("histogram opened with nevents= ", nevents)
 
@@ -654,6 +654,8 @@ def runOneFile(filename):
             out_events["weight_WmunuCR_1b"]     = 1
             
         
+        
+
         #thisregion = out_events[(out_events["TopenuCR_2b"]==True)]  
         #thisregion_ = thisregion[~(ak.is_none(thisregion))]
                 
@@ -688,7 +690,7 @@ def runOneFile(filename):
         #print ("event list: ", GetRegion(fulltree_, iregion).event.tolist())
         #print ("weight list: ", GetRegion(fulltree_, iregion).total_weight_jets.tolist())
         
-        
+    print ("NOW ENTERING THE HISTOGRAMMING")        
     f = TFile(outputfile,"RECREATE")
     for ireg in regions:
         thisregion  = fulltree_[fulltree_[ireg]==True]
