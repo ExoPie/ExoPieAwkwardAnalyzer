@@ -61,6 +61,11 @@ def GetEntries(out_events, region):
     return len(thisregion_)
     
 def runOneFile(filename):
+    
+    isdata=False
+    if "Run201"  in inputfile:
+        isdata=True
+    print ("Status of the isdata flag:", isdata)
     #print ("filename: ", filename)
     #inputfile=filename
     outputfile = "output/"+inputfile.split("/")[-1]
@@ -103,7 +108,7 @@ def runOneFile(filename):
     for tree_ in uproot4.iterate(file_["outTree"], ["st_runId", "st_lumiSection", "st_eventId", "st_THINjetPx", "st_THINjetPy", "st_THINjetPz", "st_THINjetEnergy",
                                                     "st_THINjetDeepCSV",
                                                     "st_THINjetHadronFlavor",
-                                                    "st_pfMetCorrPt", "st_pfMetCorrPhi", "st_mettrigdecision",
+                                                    "st_pfMetCorrPt", "st_pfMetCorrPhi", "st_mettrigdecision","st_filterstatus",
                                                     "st_pfpatCaloMETPt",
                                                     "st_elePx", "st_elePy", "st_elePz", "st_eleEnergy",
                                                     "st_eleIsPassLoose", "st_eleIsPassTight", "st_eleCharge",
@@ -134,7 +139,7 @@ def runOneFile(filename):
     	                        "jetpt": getpt(tree_["st_THINjetPx"], tree_["st_THINjetPy"]), "jeteta":geteta(tree_["st_THINjetPx"], tree_["st_THINjetPy"], tree_["st_THINjetPz"]), 
     	                        "jetphi":getphi(tree_["st_THINjetPx"], tree_["st_THINjetPy"]), "jetcsv": tree_["st_THINjetDeepCSV"],
     	                        "jetflav":tree_["st_THINjetHadronFlavor"],
-    	                        "metpt":tree_["st_pfMetCorrPt"], "metphi": tree_["st_pfMetCorrPhi"], "mettrig": tree_["st_mettrigdecision"],
+    	                        "metpt":tree_["st_pfMetCorrPt"], "metphi": tree_["st_pfMetCorrPhi"], "mettrig": tree_["st_mettrigdecision"], "filters":tree_["st_filterstatus"],
     	                        "calometpt":tree_["st_pfpatCaloMETPt"],
     	                        "elepx":tree_["st_elePx"], "elepy":tree_["st_elePy"], "elepz":tree_["st_elePz"], "elee":tree_["st_eleEnergy"],
     	                        "eleidL":tree_["st_eleIsPassLoose"], "eleidT":tree_["st_eleIsPassTight"], "eleq":tree_["st_eleCharge"],
@@ -279,6 +284,10 @@ def runOneFile(filename):
         #print (cms_events.delta_met_tope)
         
         
+        ## if MC, set the filter status to True. For data: use whatever is stored inside. 
+        if not isdata:
+            cms_events["filters"] = 1
+        
         #--------------------------------------------------------------------------------------------------
         ## W --> lepton + nu 
         #--------------------------------------------------------------------------------------------------
@@ -312,6 +321,7 @@ def runOneFile(filename):
         
         out_events["mettrig"]           = cms_events["mettrig"]
         out_events["metpt"]             = cms_events["metpt"]
+        out_events["pfpatCaloMETPt"]    = cms_events["calometpt"]
         out_events["metphi"]            = cms_events["metphi"]
         out_events["nTrueInt"]          = cms_events["nTrueInt"]
         out_events["nJetLoose"]         = cms_events["nJetLoose"]
@@ -319,6 +329,7 @@ def runOneFile(filename):
         out_events["delta_met_tope"] = cms_events["delta_met_tope"]
         out_events["delta_met_topmu"] = cms_events["delta_met_topmu"]
         
+        out_events["ntau"]              = cms_events["ntau"]
         out_events["npho"]              = cms_events["npho"]
         out_events["ncleanpho"]         = cms_events["ncleanpho"]
         out_events["cleanphoinfo"]      = cms_events["cleanphoinfo"]
@@ -425,10 +436,12 @@ def runOneFile(filename):
 
         out_events["SR_2b"]             = cms_events["mask_SR2b"]
         out_events["SR_1b"]             = cms_events["mask_SR1b"]
-        out_events["ZeeCR_2b"]          = cms_events["mask_Zee2b"] 
-        out_events["ZeeCR_1b"]          = cms_events["mask_Zee1b"] 
-        out_events["ZmumuCR_2b"]        = cms_events["mask_Zmumu2b"] 
-        out_events["ZmumuCR_1b"]        = cms_events["mask_Zmumu1b"] 
+        
+        out_events["ZeeCR_3j"]          = cms_events["mask_Zee2b"] 
+        out_events["ZeeCR_2j"]          = cms_events["mask_Zee1b"] 
+        out_events["ZmumuCR_3j"]        = cms_events["mask_Zmumu2b"] 
+        out_events["ZmumuCR_2j"]        = cms_events["mask_Zmumu1b"] 
+        
         out_events["TopenuCR_2b"]       = cms_events["mask_topenu2b"]
         out_events["TopenuCR_1b"]       = cms_events["mask_topenu1b"]
         out_events["TopmunuCR_2b"]      = cms_events["mask_topmunu2b"]
@@ -616,11 +629,11 @@ def runOneFile(filename):
         out_events["weight_SR_2b"]          = out_events.puweight * out_events.mettrigWeight * out_events.total_weight_jets * commonweight
         out_events["weight_SR_1b"]          = out_events.puweight * out_events.mettrigWeight * out_events.total_weight_jets * commonweight
         
-        out_events["weight_ZeeCR_2b"]       = out_events.puweight * out_events.eleTrigSF0 * out_events.eleTightSF0 * out_events.eleLooseSF1 * out_events.eleRecoSF0 * out_events.eleRecoSF1 * out_events.total_weight_jets * commonweight
-        out_events["weight_ZeeCR_1b"]       = out_events.puweight * out_events.eleTrigSF0 * out_events.eleTightSF0 * out_events.eleLooseSF1 * out_events.eleRecoSF0 * out_events.eleRecoSF1 * out_events.total_weight_jets * commonweight
+        out_events["weight_ZeeCR_3j"]       = out_events.puweight * out_events.eleTrigSF0 * out_events.eleTightSF0 * out_events.eleLooseSF1 * out_events.eleRecoSF0 * out_events.eleRecoSF1 * out_events.total_weight_jets * commonweight
+        out_events["weight_ZeeCR_2j"]       = out_events.puweight * out_events.eleTrigSF0 * out_events.eleTightSF0 * out_events.eleLooseSF1 * out_events.eleRecoSF0 * out_events.eleRecoSF1 * out_events.total_weight_jets * commonweight
         
-        out_events["weight_ZmumuCR_2b"]     = out_events.puweight * out_events.recoilZmumutrigWeight * out_events.muTightSF0 * out_events.muLooseSF1 * out_events.total_weight_jets * commonweight
-        out_events["weight_ZmumuCR_1b"]     = out_events.puweight * out_events.recoilZmumutrigWeight * out_events.muTightSF0 * out_events.muLooseSF1 * out_events.total_weight_jets * commonweight
+        out_events["weight_ZmumuCR_3j"]     = out_events.puweight * out_events.recoilZmumutrigWeight * out_events.muTightSF0 * out_events.muLooseSF1 * out_events.total_weight_jets * commonweight
+        out_events["weight_ZmumuCR_2j"]     = out_events.puweight * out_events.recoilZmumutrigWeight * out_events.muTightSF0 * out_events.muLooseSF1 * out_events.total_weight_jets * commonweight
         
         out_events["weight_TopenuCR_2b"]    = out_events.puweight * out_events.eleTrigSF0 * out_events.eleTightSF0 * out_events.eleRecoSF0 * out_events.total_weight_jets * commonweight
         out_events["weight_TopmunuCR_2b"]   = out_events.puweight * out_events.recoilWmunutrigWeight * out_events.muTightSF0 * out_events.total_weight_jets * commonweight
@@ -628,6 +641,18 @@ def runOneFile(filename):
         out_events["weight_WenuCR_1b"]      = out_events.puweight * out_events.eleTrigSF0 * out_events.eleTightSF0 * out_events.eleRecoSF0 * out_events.total_weight_jets * commonweight
         out_events["weight_WmunuCR_1b"]     = out_events.puweight * out_events.recoilWmunutrigWeight * out_events.muTightSF0 * out_events.total_weight_jets * commonweight
         
+        if isdata:
+            out_events["weight_SR_2b"]          = 1
+            out_events["weight_SR_1b"]          = 1
+            out_events["weight_ZeeCR_3j"]       = 1
+            out_events["weight_ZeeCR_2j"]       = 1
+            out_events["weight_ZmumuCR_3j"]     = 1
+            out_events["weight_ZmumuCR_2j"]     = 1
+            out_events["weight_TopenuCR_2b"]    = 1 
+            out_events["weight_TopmunuCR_2b"]   = 1
+            out_events["weight_WenuCR_1b"]      = 1
+            out_events["weight_WmunuCR_1b"]     = 1
+            
         
         #thisregion = out_events[(out_events["TopenuCR_2b"]==True)]  
         #thisregion_ = thisregion[~(ak.is_none(thisregion))]
@@ -651,10 +676,10 @@ def runOneFile(filename):
     from variables import vardict, regions, variables_common
     from binning import binning
     
-    thisevent = fulltree_[(fulltree_.event==6909251)]
-    print ("Praveen tt 2b event for weight debuging:", thisevent.tolist())
-    for iregion in regions:
-        print ("events in ", iregion, GetEntries(fulltree_, iregion ) )
+    #thisevent = fulltree_[(fulltree_.event==6909251)]
+    #print ("Praveen tt 2b event for weight debuging:", thisevent.tolist())
+    #for iregion in regions:
+    #    print ("events in ", iregion, GetEntries(fulltree_, iregion ) )
         
         #if iregion == "ZmumuCR_1b":
         #    topr = GetRegion(fulltree_, iregion)
@@ -669,7 +694,6 @@ def runOneFile(filename):
         thisregion  = fulltree_[fulltree_[ireg]==True]
         thisregion_ = thisregion[~(ak.is_none(thisregion))]
         weight_ = "weight_"+ireg
-        
         for ivar in variables_common[ireg]:
             hist_name_ = "h_reg_"+ireg+"_"+vardict[ivar]
             h = VarToHist(thisregion_[ivar], thisregion_[weight_], hist_name_, binning[ireg][ivar])

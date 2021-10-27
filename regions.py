@@ -2,6 +2,7 @@ import awkward1 as ak
 
 def get_mask_wmunu1b(cms_events):
     mask_wmunu1b = ( (cms_events.mettrig ) &
+                     (cms_events.filters) & 
                      (cms_events.nEleLoose==0 ) &
                      #(cms_events.npho==0) &
                      (cms_events.metpt>100.) &
@@ -22,6 +23,7 @@ def get_mask_wmunu1b(cms_events):
     
 def get_mask_wenu1b (cms_events):
     mask_wenu1b = ( (cms_events.eletrig) &
+                    (cms_events.filters) &
                     (cms_events.nEleTight==1 ) &
                     (cms_events.nEleLoose==1 ) &
                     (cms_events.metpt>100.) &
@@ -41,6 +43,7 @@ def get_mask_wenu1b (cms_events):
 
 def get_mask_topmunu2b (cms_events):
     mask_topmunu2b = ( (cms_events.mettrig) &
+                       (cms_events.filters) &
                        (cms_events.nEleLoose==0 ) &
                        (cms_events.ncleanpho==0) &
                        #(cms_events.npho==0) &
@@ -63,6 +66,7 @@ def get_mask_topmunu2b (cms_events):
 
 def get_mask_topenu2b (cms_events):
     mask_topenu2b = ( (cms_events.eletrig) &
+                      (cms_events.filters) &
                       (cms_events.eletrig)& 
                       (cms_events.nMuLoose==0) &
                       (cms_events.ntau==0) &
@@ -86,6 +90,7 @@ def get_mask_topenu2b (cms_events):
 
 def get_mask_Zmumu1b (cms_events):
     mask_Zmumu1b = ( (cms_events.mettrig) &
+                     (cms_events.filters) &
                      (cms_events.nEleLoose==0 ) &
                      (cms_events.ncleanpho==0) &
                      #(cms_events.npho==0) &
@@ -109,6 +114,7 @@ def get_mask_Zmumu1b (cms_events):
 
 def get_mask_Zmumu2b (cms_events):
     mask_Zmumu2b = ( (cms_events.mettrig) &
+                     (cms_events.filters) &
                      (cms_events.nEleLoose==0 ) &
                      (cms_events.ncleanpho==0) &
                      #(cms_events.npho==0) &
@@ -133,6 +139,7 @@ def get_mask_Zmumu2b (cms_events):
 
 def get_mask_Zee1b (cms_events):
     mask_Zee1b = ( (cms_events.eletrig) &
+                   (cms_events.filters) &
                    (cms_events.nEleLoose==2 ) &
                    (cms_events.nEleTight>=1 ) &
                    (cms_events.ele_sel_tight0==True)&
@@ -156,6 +163,7 @@ def get_mask_Zee1b (cms_events):
 
 def get_mask_Zee2b (cms_events):
     mask_Zee2b = ( (cms_events.eletrig) &
+                   (cms_events.filters) &
                    (cms_events.nEleLoose==2 ) &
                    (cms_events.nEleTight>=1 ) &
                    (cms_events.ele_sel_tight0==True) &
@@ -180,6 +188,7 @@ def get_mask_Zee2b (cms_events):
 
 def get_mask_SR1b (cms_events):
     mask_SR1b =  ( (cms_events.mettrig) &
+                   (cms_events.filters) &
                    (cms_events.metpt > 250) &
                    (cms_events.nEleLoose==0 ) &
                    (cms_events.ncleanpho==0) &
@@ -197,7 +206,8 @@ def get_mask_SR1b (cms_events):
     return mask_SR1b
 
 def get_mask_SR2b (cms_events):
-    mask_SR2b =  ( (cms_events.mettrig) & 
+    mask_SR2b =  ( (cms_events.mettrig) &
+                   (cms_events.filters) &
                    (cms_events.metpt > 250) &
                    (cms_events.nEleLoose==0 ) &
                    #(cms_events.npho==0) &
@@ -222,7 +232,8 @@ def get_mask_SR2b (cms_events):
 
 
 def get_mask_wmunu2b (cms_events):
-    mask_wmunu2b = ( (cms_events.nEleLoose==0 ) &
+    mask_wmunu2b = ( (cms_events.filters) &
+                     (cms_events.nEleLoose==0 ) &
                      (cms_events.npho==0) &
                      (cms_events.ntau==0) &
                      (cms_events.nMuLoose==1) &
@@ -239,7 +250,8 @@ def get_mask_wmunu2b (cms_events):
 
 
 def get_mask_wenu2b (cms_events):
-    mask_wenu2b = ( (cms_events.nEleTight==1 ) &
+    mask_wenu2b = ( (cms_events.filters) &
+                    (cms_events.nEleTight==1 ) &
                     (cms_events.nEleLoose==1 ) &
                     (cms_events.npho==0) &
                     (cms_events.ntau==0) &
@@ -255,7 +267,8 @@ def get_mask_wenu2b (cms_events):
     return mask_wenu2b
 
 def get_mask_topmunu1b (cms_events):
-    mask_topmunu1b = ( (cms_events.nEleLoose==0 ) &
+    mask_topmunu1b = ( (cms_events.filters) &
+                       (cms_events.nEleLoose==0 ) &
                        (cms_events.npho==0) &
                        (cms_events.ntau==0) &
                        (cms_events.nMuLoose==1) &
@@ -273,7 +286,8 @@ def get_mask_topmunu1b (cms_events):
     return mask_topmunu1b
 
 def get_mask_topenu1b (cms_events):
-    mask_topenu1b = ( (cms_events.nEleTight==1 ) &
+    mask_topenu1b = ( (cms_events.filters) &
+                      (cms_events.nEleTight==1 ) &
                       (cms_events.nEleLoose==1 ) &
                       (cms_events.npho==0) &
                       (cms_events.ntau==0) &
