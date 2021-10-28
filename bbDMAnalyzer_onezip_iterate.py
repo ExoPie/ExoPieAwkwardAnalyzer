@@ -26,8 +26,8 @@ import copy
 import multiprocessing as mp
 from utils import getpt, geteta, getphi, getrecoil, DeltaPhi, getMT, getRecoilPhi, getrecoil1, getN, VarToHist, SetHist, FileToList, deltaR
 from functools import partial
-import concurrent.futures
-executor = concurrent.futures.ThreadPoolExecutor(32)
+#import concurrent.futures
+#executor = concurrent.futures.ThreadPoolExecutor(32)
 
 #trees_ = ['outTree']
 inputfile=sys.argv[1]
@@ -77,7 +77,7 @@ def runOneFile(filename):
     
     #file_=uproot4.MultithreadedFileSource(inputfile, num_workers=10)
     #print ("root file opened: ", filename)
-    nevents=ak.to_list(file_["h_total_mcweight"].values())[-1]
+    nevents=ak.to_list(file_["h_total_mcweight"].values())[2]
     #nevents = 1000000
     print ("histogram opened with nevents= ", nevents)
 
@@ -118,7 +118,7 @@ def runOneFile(filename):
                                                     "st_nPho",
                                                     "st_phoPx","st_phoPy", "st_phoPz", "st_phoEnergy",
                                                     "st_pu_nTrueInt", "st_pu_nPUVert", "st_eletrigdecision", "st_prefiringweight", "mcweight", "st_genParPt"],
-                                 executor=executor,
+                                 #executor=executor,
                                  step_size=50000):
         
         print ("tree length for iteratiion ", len(tree_), (niterations))
