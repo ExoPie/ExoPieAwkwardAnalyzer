@@ -1,0 +1,20 @@
+
+    universe = vanilla
+    request_memory = 8192
+    Proxy_filename = x509up
+    Proxy_path = /afs/cern.ch/user/k/khurana/private/$(Proxy_filename)
+    request_cpus = 4
+    +JobFlavour = "nextweek"
+    executable = runanalysis.sh
+    should_transfer_files = YES
+    output = output_c/condor.$(Cluster).$(Process).out
+    error = error_c/condor.$(Cluster).$(Process).err
+    log = log_c/condor.$(Cluster).$(Process).log
+    transfer_input_files = ./pyfiles.tar, ./data.tar, requirements.txt
+    on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)
+    on_exit_hold = ( (ExitBySignal == True) || (ExitCode != 0) )
+    on_exit_hold_reason = strcat("Job held by ON_EXIT_HOLD due to ",ifThenElse((ExitBySignal == True), "exit by signal",strcat("exit code ",ExitCode)), ".")
+    periodic_release =  (NumJobStarts < 5) && ((CurrentTime - EnteredCurrentStatus) > (60*60))
+    arguments =  /eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/$(jobid) 2017 $(jobid) $(Proxy_path)
+    queue jobid from skimfileslist/samplespplit/crab_bbDM_2HDMa_LO_5f_TuneCP3_13TeV_madgraph_pythia8_5_ma_350_mA.txt
+    
