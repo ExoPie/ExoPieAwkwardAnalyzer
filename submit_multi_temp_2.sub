@@ -1,0 +1,22 @@
+universe = vanilla
+request_memory = 8192
+Proxy_filename = x509up
+Proxy_path = /afs/cern.ch/user/k/khurana/private/$(Proxy_filename)
+request_cpus = 4
++JobFlavour = "nextweek"
+executable = runanalysis.sh
+should_transfer_files = YES
+output = output_c/condor.$(Cluster).$(Process).out
+error = error_c/condor.$(Cluster).$(Process).err
+log = log_c/condor.$(Cluster).$(Process).log
+transfer_input_files = pyfiles.tar, mypack.tar.bz2 data.tar
+#cmssw_setup.sh, ../../../ExoPieProducer,../monoHbbAnalyzer.py, dummy.txt, ../configs, ../../../ExoPieUtils, sandbox-CMSSW_10_3_0-4cef61e.tar.bz2, Filelists_v07.04_noJER_TT/crab_TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8_200927_170951_0002_4.txt
+transfer_output_files = dummy.txt
+
+on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)
+on_exit_hold = ( (ExitBySignal == True) || (ExitCode != 0) )
+on_exit_hold_reason = strcat("Job held by ON_EXIT_HOLD due to ",ifThenElse((ExitBySignal == True), "exit by signal",strcat("exit code ",ExitCode)), ".")
+periodic_release =  (NumJobStarts < 5) && ((CurrentTime - EnteredCurrentStatus) > (60*60))
+
+arguments = /eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_1.root 2017 DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_3.root $Proxy_path
+queue

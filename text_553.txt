@@ -1,0 +1,81 @@
+histogram opened with nevents=  498874.0
+before reading the arrays:  5.29s
+tree length for iteratiion  50000 0
+after zipping : 6.77s
+35.0
+tree length for iteratiion  50000 1
+after zipping : 11.51s
+35.0
+tree length for iteratiion  50000 2
+after zipping : 15.41s
+35.0
+tree length for iteratiion  50000 3
+after zipping : 19.69s
+35.0
+tree length for iteratiion  50000 4
+after zipping : 23.58s
+35.0
+tree length for iteratiion  50000 5
+after zipping : 27.62s
+35.0
+tree length for iteratiion  50000 6
+after zipping : 31.6s
+35.0
+tree length for iteratiion  50000 7
+after zipping : 35.89s
+35.0
+tree length for iteratiion  50000 8
+after zipping : 40.13s
+35.0
+tree length for iteratiion  50000 9
+after zipping : 44.23s
+35.0
+tree length for iteratiion  50000 10
+after zipping : 48.68s
+35.0
+tree length for iteratiion  50000 11
+after zipping : 53.07s
+35.0
+tree length for iteratiion  50000 12
+after zipping : 57.34s
+35.0
+tree length for iteratiion  50000 13
+after zipping : 61.66s
+35.0
+tree length for iteratiion  50000 14
+after zipping : 65.94s
+35.0
+tree length for iteratiion  50000 15
+after zipping : 70.73s
+35.0
+tree length for iteratiion  50000 16
+after zipping : 74.92s
+35.0
+tree length for iteratiion  50000 17
+after zipping : 79.31s
+35.0
+tree length for iteratiion  50000 18
+after zipping : 83.97s
+35.0
+tree length for iteratiion  50000 19
+after zipping : 88.44s
+35.0
+tree length for iteratiion  50000 20
+after zipping : 93s
+35.0
+tree length for iteratiion  10781 21
+after zipping : 97.32s
+35.0
+Praveen tt 2b event for weight debuging: [{'run': 1, 'lumi': 1277, 'event': 2711553, 'mettrig': False, 'metpt': 26.36272621154785, 'metphi': 2.536360025405884, 'nTrueInt': 26.263803482055664, 'delta_met_tope': 0.037388481199741364, 'delta_met_topmu': None, 'npho': 0, 'ncleanpho': 0, 'cleanphoinfo': [], 'phoeta': [], 'phophi': [], 'phopt': [], 'jetetaLoose': [-0.7942776083946228, 0.3081928491592407], 'jetphiLoose': [0.8370833396911621, 0.10577933490276337], 'jetptLoose': [349.7754211425781, 43.39468002319336], 'jetflavLoose': [0, 0], 'mu_sel_tight0': None, 'nMuTight': 0, 'nMuLoose': 0, 'mu_q0': None, 'mu_q1': None, 'mupt0': None, 'mupt1': None, 'mueta0': None, 'mueta1': None, 'muphi0': None, 'muphi1': None, 'ele_sel_tight0': True, 'nEleTight': 1, 'nEleLoose': 2, 'ele_q0': -1.0, 'ele_q1': 1.0, 'elept0': 358.0858154296875, 'elept1': 54.992183685302734, 'eleeta0': -0.5182359218597412, 'eleeta1': -0.3050677478313446, 'elephi0': -2.3629202842712402, 'elephi1': -1.7445298433303833, 'recoil_Wmunu0': None, 'recoil_Wenu0': 363.9072570800781, 'recoil_WmunuPhi0': None, 'recoil_WenuPhi0': 0.8633662462234497, 'mt_Wmunu0': None, 'mt_Wenu0': 123.98461151123047, 'Zee_mass': 90.5074691772461, 'Zee_pt': 404.1534729003906, 'Zee_recoil': 407.83624267578125, 'Zmumu_mass': None, 'Zmumu_pt': None, 'Zmumu_recoil': None, 'nJetLoose': 2, 'nJetTight': 1, 'nJetb': 0, 'min_dphi_jet_met': 1.6992766857147217, 'jet_sel_tight0': True, 'jet_sel_b_0': False, 'jet_sel_b_1': False, 'prefigingwt': 1.0, 'mcnloweight': -1.0, 'jetpt0': 349.7754211425781, 'jetpt1': 43.39468002319336, 'jetpt2': None, 'jetpt3': None, 'jetpt4': None, 'jetpt5': None, 'jetpt6': None, 'jeteta0': -0.7942776083946228, 'jeteta1': 0.3081928491592407, 'jeteta2': None, 'jeteta3': None, 'jeteta4': None, 'jeteta5': None, 'jeteta6': None, 'deta': -1.1024703979492188, 'cts': 0.5014453530311584, 'jetphi0': 0.8370833396911621, 'jetphi1': 0.10577933490276337, 'jetphi2': None, 'jetflav0': 0, 'jetflav1': 0, 'jetflav2': None, 'jetflav3': None, 'jetflav4': None, 'jetflav5': None, 'jetflav6': None, 'csv0': 0.036532334983348846, 'csv1': 0.05331487953662872, 'csv2': None, 'csv3': None, 'SR_2b': False, 'SR_1b': False, 'ZeeCR_2b': True, 'ZeeCR_1b': True, 'ZmumuCR_2b': None, 'ZmumuCR_1b': None, 'TopenuCR_2b': False, 'TopenuCR_1b': False, 'TopmunuCR_2b': None, 'TopmunuCR_1b': None, 'WenuCR_1b': False, 'WenuCR_2b': False, 'WmunuCR_1b': None, 'WmunuCR_2b': None, 'btagsf': [1.0289138425243367, 0.9816970726252241], 'btag_eff_mwp': [0.5974105271922399, 0.6361439654076052], 'ctag_eff_mwp': [0.10716824237051077, 0.099951119144244], 'ltag_eff_mwp': [0.01000250913695414, 0.007051477785713219], 'eff_flav_st_b': [0.0, 0.0], 'eff_flav_st_c': [0.0, 0.0], 'eff_flav_st_l': [0.01000250913695414, 0.007051477785713219], 'eff_flav': [0.01000250913695414, 0.007051477785713219], 'total_b_tag_weight': [0.99970786696259, 1.00012997923146], 'nonbweights': [0.99970786696259, 1.00012997923146], 'bweights': [0.0, 0.0], 'all_weight_jets': [0.99970786696259, 1.00012997923146], 'total_weight_jets': 0.9998378082228222, 'eleTightSF0': 0.9576547145843506, 'eleLooseSF1': 0.9748163819313049, 'eleTrigSF0': 0.9750778675079346, 'eleRecoSF0': 0.9878910183906555, 'eleRecoSF1': 0.9796541333198547, 'muLooseSF1': None, 'muTightSF0': None, 'puweight': 1.2708748037846678, 'mettrigWeight': 0.01812182180583477, 'recoilWmunutrigWeight': None, 'recoilWenutrigWeight': 0.9974320530891418, 'recoilZmumutrigWeight': None, 'recoilZeetrigWeight': 0.9979928135871887, 'commonweight': -1.0, 'weight_SR_2b': -0.02302683136316335, 'weight_SR_1b': -0.02302683136316335, 'weight_ZeeCR_2b': -1.1193997506556173, 'weight_ZeeCR_1b': -1.1193997506556173, 'weight_ZmumuCR_2b': None, 'weight_ZmumuCR_1b': None, 'weight_TopenuCR_2b': -1.1721673270272484, 'weight_TopmunuCR_2b': None, 'weight_WenuCR_1b': -1.1721673270272484, 'weight_WmunuCR_1b': None}]
+events in  SR_1b 96
+events in  SR_2b 17
+events in  ZeeCR_2b 87739
+events in  ZmumuCR_2b 115306
+events in  TopenuCR_2b 49
+events in  TopmunuCR_2b 64
+events in  WenuCR_1b 104
+events in  WmunuCR_1b 129
+events in  ZeeCR_1b 86561
+events in  ZmumuCR_1b 112576
+149.5s
+149.5s

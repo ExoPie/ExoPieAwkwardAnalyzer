@@ -1,0 +1,10 @@
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_1.root
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_10.root
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_11.root
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_12.root
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_13.root
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_14.root
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_15.root
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_16.root
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_17.root
+root://eoscms.cern.ch//eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct/DY1JetsToLL_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8_18.root

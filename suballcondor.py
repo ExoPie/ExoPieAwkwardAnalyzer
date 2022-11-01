@@ -1,4 +1,4 @@
-1;95;0cimport os 
+import os 
 
 eospath="/eos/cms/store/group/phys_exotica/bbMET/2017_SkimmedFiles/skim_v17_12-01_type1met_taupt18_pct"
 tosubmit="condor_test"
