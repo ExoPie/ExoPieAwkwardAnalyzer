@@ -11,3 +11,9 @@ tar -cvjSf mypack.tar.bz2 mypack
 
 
 source runanalysis.sh ../DY2JetsToLL_M-50_LHEZpT_250-400_TuneCP5_13TeV-amcnloFXFX-pythia8_35.root  2017 out.root /afs/cern.ch/user/k/khurana/private/x509up
+
+
+## 
+
+1. hadd the files, 10 in each merge. 
+2. split the files properly, 
